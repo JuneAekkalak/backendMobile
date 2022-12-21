@@ -78,9 +78,9 @@ router.post('/login', loginValidation, (req, res, next) => {
                     }
                     if (bResult) {
                         const token = jwt.sign({ id: result[0].id }, 'the-super-strong-secrect', { expiresIn: '1h' });
-                        db.execute(
-                            `UPDATE users SET last_login = now() WHERE id = '${result[0].id}'`
-                        );
+                        // db.execute(
+                        //     `UPDATE users SET last_login = now() WHERE id = '${result[0].id}'`
+                        // );
                         return res.status(200).send({
                             msg: 'Logged in!',
                             token,
