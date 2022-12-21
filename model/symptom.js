@@ -1,53 +1,51 @@
 const db = require('../database/db');
 
-module.exports = class Symptom{
+module.exports = class Symptom {
 
-    constructor(){
-        
+    constructor(id, symptomName, discription, imageUr, BodyType_id) {
+        this.id = id;
+        this.symptomName = symptomName;
+        this.discription = discription;
+        this.imageUr = imageUr;
+        this.BodyType_id = BodyType_id;
     }
 
-    static findAll(){
-        return db.execute("SELECT products.p_id, products.p_name, products.p_descrip, products.p_qty, products.p_price, products.p_img, products.p_color, products.p_brand_id, brand.brand_name FROM products INNER JOIN brand ON products.p_brand_id = brand.brand_id");
+    static findAll() {
+        return db.execute("SELECT * FROM Symptom");
     }
 
-    save(){
-        if(this.p_id){
+    save() {
+        if (this.id) {
             return db.execute(
-                'update products set p_name=?, p_descrip=?, p_qty=?,  p_price=?, p_img=? ,p_color=? , p_brand_id=? where p_id = ?',
-                [this.p_name, this.p_descrip , this.p_qty, this.p_price , this.p_img , this.p_color , this.p_brand_id , this.p_id]
+                'update Symptom set symptomName=?, discription=?, imageUr=?,  BodyType_id=? where id = ?',
+                [this.symptomName, this.discription, this.imageUr, this.BodyType_id, this.id]
             );
-        }else{
+        } else {
             return db.execute(
-                'insert into products(p_name, p_descrip , p_qty, p_price , p_img, p_color, p_brand_id ) values(?,?,?,?,?,?,?)',
-                [this.p_name, this.p_descrip , this.p_qty, this.p_price , this.p_img , this.p_color , this.p_brand_id]
+                'insert into Symptom(symptomName, discription , imageUr, BodyType_id) values(?,?,?,?)',
+                [this.symptomName, this.discription, this.imageUr, this.BodyType_id]
             );
         }
     }
     //'select * from products where p_id = ?',
-    static findById(p_id){
+    static findById(id) {
         return db.execute(
-            'select products.p_id, products.p_name, products.p_descrip, products.p_qty, products.p_price, products.p_img, products.p_color, products.p_brand_id, brand.brand_name from products INNER join brand on products.p_brand_id = brand.brand_id where p_id = ?',
-            [p_id]
+            'select * from Symptom where id = ?',
+            [id]
         );
     }
 
-    static findByIdBrand(p_brand_id){
+    static findByIdBodyType(BodyType_id) {
         return db.execute(
-            'select products.p_id, products.p_name, products.p_descrip, products.p_qty, products.p_price, products.p_img, products.p_color, products.p_brand_id, brand.brand_name from products INNER join brand on products.p_brand_id = brand.brand_id where p_brand_id = ?',
-            [p_brand_id]
+            'select * from Symptom INNER join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ?',
+            [BodyType_id]
         )
     }
 
-    static delById(p_id){
+    static delById(id) {
         return db.execute(
-            'delete from products where p_id = ?',
-            [p_id]
-        );
-    }
-
-    static getBrands() {
-        return db.execute(
-            'SELECT * FROM `brand`'
+            'delete from Symptom where id = ?',
+            [id]
         );
     }
 }
