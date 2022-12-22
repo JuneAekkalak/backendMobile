@@ -7,7 +7,7 @@ router.post('/add-symtom', symptomController.addSymptom);
 
 router.get('/symptom', symptomController.getAllSymptom);
 
-router.get('/getSymptomById', symptomController.getSymptomById);
+router.get('/getSymptomById/:id', symptomController.getSymptomById);
 
 router.get('/getSymptomByType/:id', symptomController.getSymptomByType);
 

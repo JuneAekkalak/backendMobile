@@ -7,6 +7,7 @@ const app = express();
 const usersRoutes = require('./routes/users');
 const bodyTypeRoutes = require('./routes/bodytype');
 const symptomRoutes = require('./routes/symptom');
+const diseaseRoutes = require('./routes/disease');
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -25,4 +26,6 @@ app.use((req, res, next) => {
 app.use("/api/auth",usersRoutes);
 app.use("/api/body",bodyTypeRoutes);
 app.use("/api/symptom",symptomRoutes);
+app.use("/api/disease",diseaseRoutes);
+
 app.listen(8081);
