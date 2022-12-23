@@ -2,10 +2,9 @@ const db = require('../database/db');
 
 module.exports = class Disease {
 
-    constructor(id, diseaseName, detail, symptom, cause, treatment, selfCare) {
+    constructor(id, diseaseName, symptom, cause, treatment, selfCare) {
         this.id = id;
         this.diseaseName = diseaseName;
-        this.detail = detail;
         this.symptom = symptom;
         this.cause = cause;
         this.treatment = treatment;
@@ -19,13 +18,13 @@ module.exports = class Disease {
     save() {
         if (this.id) {
             return db.execute(
-                'update Disease set diseaseName=?, detail=?, symptom=?,  cause=?, treatment=?, selfCare=? where id = ?',
-                [this.diseaseName, this.detail, this.symptom, this.cause, this.treatment, this.selfCare, this.id]
+                'update Disease set diseaseName=?, symptom=?,  cause=?, treatment=?, selfCare=? where id = ?',
+                [this.diseaseName, this.symptom, this.cause, this.treatment, this.selfCare, this.id]
             );
         } else {
             return db.execute(
                 'insert into Disease(diseaseName, detail, symptom,  cause, treatment, selfCare) values(?,?,?,?,?,?)',
-                [this.diseaseName, this.detail, this.symptom, this.cause, this.treatment, this.selfCare]
+                [this.diseaseName, this.symptom, this.cause, this.treatment, this.selfCare]
             );
         }
     }

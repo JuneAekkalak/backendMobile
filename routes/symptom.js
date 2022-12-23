@@ -11,7 +11,7 @@ router.get('/getSymptomById/:id', symptomController.getSymptomById);
 
 router.get('/getSymptomByType/:BodyTyep_id', symptomController.getSymptomByType);
 
-router.get('/getSymptomByDisease/:id', symptomController.getSymptomByType);
+router.get('/getSymptomByDisease/:id', symptomController.getDisease);
 
 
 module.exports = router;

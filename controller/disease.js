@@ -15,13 +15,12 @@ exports.getAllDisease = (req, res, next) => {
 
 exports.addDisease = (req, res, next) => {
     const diseaseName = req.body.diseaseName;
-    const detail = req.body.detail;
     const symptom = req.body.symptom;
     const cause = req.body.cause;
     const treatment = req.body.treatment;
     const selfCare = req.body.selfCare;
 
-    const disease = new Disease(null, diseaseName, detail, symptom, cause, treatment, selfCare);
+    const disease = new Disease(null, diseaseName, symptom, cause, treatment, selfCare);
     Disease.save().then(() => {
         res.status(200).json({
             "message": "success",
