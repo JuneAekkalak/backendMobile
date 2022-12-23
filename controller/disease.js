@@ -19,7 +19,7 @@ exports.addDisease = (req, res, next) => {
     const symptom = req.body.symptom;
     const cause = req.body.cause;
     const treatment = req.body.treatment;
-    const selfCare = req.body.diseaseName;
+    const selfCare = req.body.selfCare;
 
     const disease = new Disease(null, diseaseName, detail, symptom, cause, treatment, selfCare);
     Disease.save().then(() => {

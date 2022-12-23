@@ -42,6 +42,13 @@ module.exports = class Symptom {
         )
     }
 
+    static findByDisease(id) {
+        return db.execute(
+            'SELECT * FROM symptom as sym INNER JOIN symptomKeyword ON sym.id = symptomKeyword.Symptom_id INNER JOIN disease as dis ON symptomKeyword.Disease_id = dis.id where sym.id = ?;'
+            [id]
+        )
+    }
+
     static delById(id) {
         return db.execute(
             'delete from Symptom where id = ?',
