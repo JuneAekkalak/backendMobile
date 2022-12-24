@@ -7,7 +7,7 @@ router.post('/add-bodytype', bodyTypeController.addBodyType);
 
 router.get('/bodytype', bodyTypeController.getAllBodyType);
 
-router.get('/getBodyTypeById/:id', bodyTypeController.getBodyTypeById);
+router.get('/getBodyTypeById/:p_id', bodyTypeController.getBodyTypeById);
 
 
 // // ดึงข้อสินค้าที่มีแบรนด์นี้ออกมา

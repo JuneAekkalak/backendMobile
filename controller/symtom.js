@@ -48,8 +48,35 @@ exports.getSymptomById = (req, res, next) => {
 }
 
 exports.getSymptomByType = (req, res, next) => {
-    const BodyType_id = req.params.BodyType_id;
-    Symptom.findByIdBrand(BodyType_id).then((symptom) => {
+    const BodyType_id = req.params.id;
+    Symptom.findByIdBodyType(BodyType_id).then((symptom) => {
+        res.status(200).json({
+            "message": "success",
+            "data": symptom[0]
+        });
+    }).catch((error) => {
+        res.status(500).json({
+            "message": error
+        });
+    });
+}
+
+exports.getSymptomByTypeNotImg = (req, res, next) => {
+    const BodyType_id = req.params.id;
+    Symptom.findByIdBodyTypeNotImg(BodyType_id).then((symptom) => {
+        res.status(200).json({
+            "message": "success",
+            "data": symptom[0]
+        });
+    }).catch((error) => {
+        res.status(500).json({
+            "message": error
+        });
+    });
+}
+
+exports.getSymptomByImg = (req, res, next) => {
+    Symptom.findBySymptomImg().then((symptom) => {
         res.status(200).json({
             "message": "success",
             "data": symptom[0]

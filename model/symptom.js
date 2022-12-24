@@ -37,15 +37,30 @@ module.exports = class Symptom {
 
     static findByIdBodyType(BodyType_id) {
         return db.execute(
-            'select * from Symptom INNER join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ?',
+            // 'select * from Symptom INNER join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ?',
+            'select Symptom.id,Symptom.symptomName,Symptom.discription,Symptom.imageUrl,Symptom.BodyType_id,BodyType.typeTitle,BodyType.typeName from Symptom Left join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ?',
             [BodyType_id]
         )
     }
 
     static findByDisease(id) {
         return db.execute(
-            'SELECT * FROM symptom as sym INNER JOIN symptomKeyword ON sym.id = symptomKeyword.Symptom_id INNER JOIN disease as dis ON symptomKeyword.Disease_id = dis.id where sym.id = ?;'
+            'SELECT * FROM symptom as sym INNER JOIN symptomKeyword ON sym.id = symptomKeyword.Symptom_id INNER JOIN disease as dis ON symptomKeyword.Disease_id = dis.id where sym.id = ?',
             [id]
+        )
+    }
+
+    static findByIdBodyTypeNotImg(BodyType_id) {
+        return db.execute(
+            // 'select * from Symptom INNER join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ?',
+            'select Symptom.id,Symptom.symptomName,Symptom.discription,Symptom.imageUrl,Symptom.BodyType_id,BodyType.typeTitle,BodyType.typeName from Symptom Left join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ? and Symptom.imageUrl is null',
+            [BodyType_id]
+        )
+    }
+    static findBySymptomImg() {
+        return db.execute(
+            // 'select * from Symptom INNER join BodyType on Symptom.BodyType_id = BodyType.id where BodyType_id = ?',
+            'select Symptom.id,Symptom.symptomName,Symptom.discription,Symptom.imageUrl,Symptom.BodyType_id,BodyType.typeTitle,BodyType.typeName from Symptom Left join BodyType on Symptom.BodyType_id = BodyType.id where Symptom.imageUrl is not null',
         )
     }
 

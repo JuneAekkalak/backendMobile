@@ -28,4 +28,4 @@ app.use("/api/body",bodyTypeRoutes);
 app.use("/api/symptom",symptomRoutes);
 app.use("/api/disease",diseaseRoutes);
 
-app.listen(8081);
+app.listen(8083);

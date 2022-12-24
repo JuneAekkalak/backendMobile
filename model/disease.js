@@ -23,7 +23,7 @@ module.exports = class Disease {
             );
         } else {
             return db.execute(
-                'insert into Disease(diseaseName, detail, symptom,  cause, treatment, selfCare) values(?,?,?,?,?,?)',
+                'insert into Disease(diseaseName, symptom,  cause, treatment, selfCare) values(?,?,?,?,?)',
                 [this.diseaseName, this.symptom, this.cause, this.treatment, this.selfCare]
             );
         }
