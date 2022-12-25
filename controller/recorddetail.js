@@ -16,18 +16,18 @@ const RecordDetail = require('../model/recorddetail');
 exports.addRecordDetail = (req, res, next) => {
     const Symptom_id = req.body.Symptom_id;
     const DailyRecord_id = req.body.DailyRecord_id;
-    // console.log(Symptom_id);
+    console.log(Symptom_id);
     Symptom_id.forEach(element => {
         console.log(element);
         const recorddetail = new RecordDetail(element, DailyRecord_id);
-        recorddetail.save().then(() => {
-        }).catch((error) => {
+        recorddetail.save().catch((error) => {
             res.status(200).json({
                 "message": error,
                 "result": false
             });
         });
     });
+    res.send({ success: 'Values inserted successfully' });
 }
 
 // exports.getRecordDetailById = (req, res, next) => {
