@@ -44,4 +44,9 @@ module.exports = class DailyRecord {
     static getIdRecord() {
         return db.execute('SELECT id FROM dailyrecord ORDER BY id DESC LIMIT 1');
     }
+
+    static getDailyRecordByDate(date, user_id) {
+        return db.execute('SELECT * FROM `dailyrecord` dl INNER JOIN recorddetail rd ON dl.id = rd.DailyRecord_id INNER JOIN symptom s ON rd.Symptom_id = s.id WHERE dateRecord = ? and User_id = ? ',
+            [date, user_id]);
+    }
 }

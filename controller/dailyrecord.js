@@ -45,3 +45,18 @@ exports.getDailyRecordById = (req, res, next) => {
         });
     });
 }
+
+exports.getDailyRecordByDate = (req, res, next) => {
+    const date = req.params.date;
+    const User_id = req.params.User_id;
+    DailyRecord.getDailyRecordByDate(date,User_id).then((dailyrecord) => {
+        res.status(200).json({
+            "message": "success",
+            "data": dailyrecord[0]
+        });
+    }).catch((error) => {
+        res.status(500).json({
+            "message": error
+        });
+    });
+}
