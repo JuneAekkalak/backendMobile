@@ -16,7 +16,7 @@ module.exports = class DailyRecord {
     save() {
         if (this.id) {
             return db.execute(
-                'update dailyrecord set dailyDescription=? where id = ?',
+                'update dailyrecord set dateRecord=? , dailyDescription=? , User_id=? where id = ?',
                 [this.dateRecord, this.dailyDescription, this.User_id, this.id]
             );
         } else {
