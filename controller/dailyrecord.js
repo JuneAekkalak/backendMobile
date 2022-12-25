@@ -32,6 +32,26 @@ exports.addDailyRecord = (req, res, next) => {
     });
 }
 
+exports.editDailyRecord = (req, res, next) => {
+    const id = req.body.id;
+    const dateRecord = req.body.dateRecord;
+    const dailyDescription = req.body.dailyDescription;
+    const User_id = req.body.User_id;
+
+    const dailyrecord = new DailyRecord(id, dateRecord, dailyDescription,User_id);
+    dailyrecord.save().then(() => {
+        res.status(200).json({
+            "message": "success",
+            "result": true
+        });
+    }).catch((error) => {
+        res.status(200).json({
+            "message": error,
+            "result": false
+        });
+    });
+}
+
 exports.getDailyRecordById = (req, res, next) => {
     const id = req.params.id;
     DailyRecord.findById(id).then((dailyrecord) => {
