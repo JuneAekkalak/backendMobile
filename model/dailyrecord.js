@@ -40,4 +40,8 @@ module.exports = class DailyRecord {
             [id]
         );
     }
+
+    static getIdRecord() {
+        return db.execute('SELECT id FROM dailyrecord ORDER BY id DESC LIMIT 1');
+    }
 }

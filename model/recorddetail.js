@@ -17,7 +17,7 @@ module.exports = class RecordDetail {
             [this.Symptom_id, this.DailyRecord_id]
         );
     }
-    
+
     //'select * from products where p_id = ?',
     static findById(id) {
         return db.execute(
@@ -32,4 +32,8 @@ module.exports = class RecordDetail {
             [id]
         );
     }
+
+    // static getIdRecord() {
+    //     return db.execute('SELECT id FROM dailyrecord ORDER BY id DESC LIMIT 1');
+    // }
 }
