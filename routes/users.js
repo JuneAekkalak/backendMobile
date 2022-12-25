@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database/db');
 const { signupValidation, loginValidation } = require('../helper/validate');
-const { validationResult } = require('express-validator');
+const { check } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 
-router.post('/register', signupValidation, (req, res, next) => {
+router.post('/register', (req, res, next) => {
     db.execute(
         `SELECT * FROM users WHERE LOWER(email) = LOWER(${db.escape(
             req.body.email
@@ -48,7 +48,7 @@ router.post('/register', signupValidation, (req, res, next) => {
         }
     );
 });
-router.post('/login', loginValidation, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     db.execute(
         `SELECT * FROM users WHERE email = ${db.escape(req.body.email)};`,
         (err, result) => {
