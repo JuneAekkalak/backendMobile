@@ -70,4 +70,11 @@ module.exports = class Symptom {
             [id]
         );
     }
+
+    static searchSymptom(query) {
+        return db.execute(
+            'select * from Symptom where symptomName LIKE ?',
+            [query + '%']
+        );
+    }
 }

@@ -17,4 +17,7 @@ router.get('/getSymptomByImg', symptomController.getSymptomByImg);
 
 router.get('/getSymptomByDisease/:id', symptomController.getDisease);
 
+
+router.get('/getSearch/:query', symptomController.getSearchSymptom);
+
 module.exports = router;

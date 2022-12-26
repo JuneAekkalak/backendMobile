@@ -101,3 +101,18 @@ exports.getDisease = (req, res, next) => {
         });
     });
 }
+
+
+exports.getSearchSymptom = (req, res, next) => {
+    const query = req.params.query;
+    Symptom.searchSymptom(query).then((symptom) => {
+        res.status(200).json({
+            "message": "success",
+            "data": symptom[0]
+        });
+    }).catch((error) => {
+        res.status(500).json({
+            "message": error
+        });
+    });
+}
