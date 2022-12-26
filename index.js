@@ -10,6 +10,7 @@ const symptomRoutes = require('./routes/symptom');
 const diseaseRoutes = require('./routes/disease');
 const recorddetailRoutes = require('./routes/recorddetail');
 const dailyrecordRoutes = require('./routes/dailyrecord');
+const profileRoutes = require('./routes/profile');
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -31,4 +32,5 @@ app.use("/api/symptom",symptomRoutes);
 app.use("/api/disease",diseaseRoutes);
 app.use("/api/record",recorddetailRoutes);
 app.use("/api/daily",dailyrecordRoutes);
+app.use("/api/profile",profileRoutes);
 app.listen(8083);
