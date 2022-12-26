@@ -74,7 +74,7 @@ module.exports = class Symptom {
     static searchSymptom(query) {
         return db.execute(
             'select * from Symptom where symptomName LIKE ?',
-            [query + '%']
+            ['%' + query + '%']
         );
     }
 }
