@@ -4,6 +4,7 @@ const recorddetailController = require('../controller/recorddetail');
 
 // path
 router.post('/add-record', recorddetailController.addRecordDetail);
+router.post('/edit-record', recorddetailController.editRecordDetail);
 
 // router.get('/disease', diseaseController.getAllDisease);
 
