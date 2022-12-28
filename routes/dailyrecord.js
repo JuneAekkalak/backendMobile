@@ -13,5 +13,6 @@ router.get('/getRecordById/:id', dailyrecordController.getDailyRecordById);
 
 router.get('/getRecordByDate/:date/:User_id', dailyrecordController.getDailyRecordByDate);
 
+router.get('/delete-Record/:daily_id', dailyrecordController.deleteDailyRecord);
 
 module.exports = router;
