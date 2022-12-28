@@ -82,28 +82,24 @@ exports.getDailyRecordByDate = (req, res, next) => {
     });
 }
 
+// exports.deleteDailyRecord = async (req, res, next) => {
+//     try {
+//         const id = req.params.daily_id;
+//         await DailyRecord.delById(id);
+//         await RecordDetail.delById(id);
+//         res.send("Success");
+//     } catch (error) {
+//         res.send(error);
+//     }
+// }
+
 exports.deleteDailyRecord = (req, res, next) => {
-    const id = req.params.daily_id;
-    DailyRecord.delById(id).then(() => {
-        res.status(200).json({
-            "message": "success",
-            "result": true
-        });
-    }).catch((error) => {
-        res.status(500).json({
-            "message": error,
-            "result": false
-        });
-    });
-    RecordDetail.delById(id).then(() => {
-        res.status(200).json({
-            "message": "success",
-            "result": true
-        });
-    }).catch((error) => {
-        res.status(500).json({
-            "message": error,
-            "result": false
-        });
-    });
+    try {
+        const id = req.params.daily_id;
+        DailyRecord.delById(id)
+        RecordDetail.delById(id)
+        res.send("Success");
+    } catch (error) {
+        res.send(error);
+    }
 }
